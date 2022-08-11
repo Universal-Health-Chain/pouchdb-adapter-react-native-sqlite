@@ -1,5 +1,5 @@
 {
-  "name": "pouchdb-adapter-react-native-sqlite",
+  "name": "@universal-health-chain/pouchdb-adapter-react-native-sqlite",
   "version": "3.0.1",
   "description": "PouchDB adapter using ReactNative SQLite Plugin as its data store.",
   "main": "./lib/index.js",
@@ -11,12 +11,27 @@
     "lib"
   ],
   "scripts": {
-    "test": "standard"
-  },
-  "dependencies": {
-    "@craftzdog/pouchdb-adapter-websql-core": "^7.2.3"
+    "test": "standard",
+    "type-check": "tsc --noEmit",
+    "type-check:watch": "npm run type-check -- --watch",
+    "prepublish:tsc": "tsc",
+    "prepublish:types": "tsc --emitDeclarationOnly",
+    "prepublish:js": "babel src --out-dir lib --extensions \".ts,.tsx\" --presets @babel/preset-es2015 --source-maps inline",
+    "prepublish": "tsc && npm run prepublish:types && npm run prepublish:tsc"
   },
   "devDependencies": {
-    "standard": "^10.0.2"
+    "standard": "^10.0.2",
+    "@babel/cli": "^7.13.10",
+    "@babel/core": "^7.13.10",
+    "@babel/plugin-proposal-class-properties": "^7.13.0",
+    "@babel/preset-env": "^7.13.10",
+    "@babel/preset-typescript": "^7.13.0",
+    "@types/jest": "^26.0.19",
+    "jest": "^26.4.2",
+    "ts-jest": "^26.4.1",
+    "typescript": "^4.5.5"
+  },
+  "dependencies": {
+    "@universal-health-chain/pouchdb-adapter-websql-core": "^7.2.3"
   }
 }

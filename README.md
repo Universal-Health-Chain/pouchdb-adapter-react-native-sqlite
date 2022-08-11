@@ -1,4 +1,4 @@
-# pouchdb-adapter-react-native-sqlite
+# @universal-health-chain/pouchdb-adapter-react-native-sqlite
 
 PouchDB adapter using ReactNative SQLite as its backing store.
 
