@@ -109,10 +109,10 @@ Here is benchmark results:
       // importing the class for react native
       const nativeSQLite = require('@universal-health-chain/react-native-quick-websql-ts');
       
-      // instantiate the plugin for react native
+      // instantiate the SQLite plugin for react native
       const pluginSQLite = new nativeSQLite.SQLitePlugin();
       
-      // create the SQLite adapter for react native
+      // create the SQLite adapter with the plugin for react native
       const adapterSQLite = createPlugin(pluginSQLite);
       
       PouchDB.plugin(HttpPouch)
