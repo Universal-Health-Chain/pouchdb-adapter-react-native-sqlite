@@ -45,10 +45,6 @@ Here is benchmark results:
 - Using this test [script](https://gist.github.com/hnq90/972f6597a0927f45d9075b8627892783)
 
 ## How to use it
-
-Check out the [craftzdog/pouchdb-react-native](https://github.com/craftzdog/pouchdb-react-native) repository, but use the @universal-health-chain packages to avoid typescript and jest errors.
-
-### React Native SQLite for PouchDB:
 *(based on https://dev.to/craftzdog/a-performant-way-to-use-pouchdb7-on-react-native-in-2022-24ej)*
 
 1. Install these packages (use `expo install`, `npm i` or `yarn add`):
@@ -56,14 +52,14 @@ Check out the [craftzdog/pouchdb-react-native](https://github.com/craftzdog/pouc
   + `expo install pouchdb-core pouchdb-replication pouchdb-mapreduce`
   + `expo install pouchdb-adapter-http react-native-quick-sqlite`
 
-2. Add the new UHC packages, refactored to typescript to solve both jest and import problems in web (for expo):
+1. Add the new UHC packages, refactored to typescript to solve both jest and import problems in web (for expo):
   + `expo install @universal-health-chain/pouchdb-adapter-react-native-sqlite-ts`
   + `expo install @universal-health-chain/react-native-quick-websql-ts`
 
-3. Then:
+1. Then:
   + `npx pod-install`
 
-4. Create the `shim.js` file (see the link) and import it in the first line in the index.js file of the project (as specified in the above link).
+1. Create the `shim.js` file (see the link) and import it in the first line in the index.js file of the project (as specified in the above link).
 
     ```js
     import {shim} from 'react-native-quick-base64'
@@ -74,7 +70,7 @@ Check out the [craftzdog/pouchdb-react-native](https://github.com/craftzdog/pouc
     process.browser = true
     ```
 
-5. Edit your `babel.config.js` like so:
+2. Edit your `babel.config.js` like so:
     ```js
     module.exports = {
       presets: ['module:metro-react-native-babel-preset'],
@@ -91,7 +87,7 @@ Check out the [craftzdog/pouchdb-react-native](https://github.com/craftzdog/pouc
     }
     ```
 
-6. To initialize, create pouchdb.ts like so:
+3. To initialize, create pouchdb.ts like so:
     ```js
     import 'react-native-get-random-values'
 
@@ -101,14 +97,15 @@ Check out the [craftzdog/pouchdb-react-native](https://github.com/craftzdog/pouc
     import replication from 'pouchdb-replication'
     import mapreduce from 'pouchdb-mapreduce'
 
-    // using PouchDB with the "@universal-health-chain" packages
+    // using PouchDB with the "@universal-health-chain" packages to avoid problems with web in expo
     import { createPlugin } from '@universal-health-chain/pouchdb-adapter-react-native-sqlite-ts'
 
-    const dbConfig: PouchDB.Configuration.DatabaseConfiguration = {
+    const dbConfigNative: PouchDB.Configuration.DatabaseConfiguration = {
       adapter: 'react-native-sqlite'
     };
 
-    export const db = await openPouchDBWithNativeAdapterSQLite("dbName", dbConfig);
+    // you can check if the platform is "web" or not (native)
+    export const db = await openPouchDBWithNativeAdapterSQLite("dbName", dbConfigNative);
 
     async function openPouchDBWithNativeAdapterSQLite(
       dbName: string,
@@ -135,7 +132,7 @@ Check out the [craftzdog/pouchdb-react-native](https://github.com/craftzdog/pouc
     };
     ```
 
-7. Note - do not use these packages to avoid jest and web problems when importing them:
+4. Note - do not use these packages to avoid jest and web problems when importing them:
   - pouchdb-adapter-react-native-sqlite
   - react-native-quick-websql
 
