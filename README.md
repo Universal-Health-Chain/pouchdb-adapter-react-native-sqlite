@@ -51,16 +51,12 @@ Here is benchmark results:
   + `expo install events react-native-get-random-values react-native-quick-base64`
   + `expo install pouchdb-core pouchdb-replication pouchdb-mapreduce`
   + `expo install pouchdb-adapter-http react-native-quick-sqlite`
-
-1. Add the new UHC packages, refactored to typescript to solve both jest and import problems in web (for expo):
+2. Add the new UHC packages, refactored to typescript to solve both jest and import problems in web (for expo):
   + `expo install @universal-health-chain/pouchdb-adapter-react-native-sqlite-ts`
   + `expo install @universal-health-chain/react-native-quick-websql-ts`
-
-1. Then:
-  + `npx pod-install`
-
-1. Create the `shim.js` file (see the link) and import it in the first line in the index.js file of the project (as specified in the above link).
-
+3. Then:
+  + `npx pod-install`x
+4. Create the `shim.js` file (see the link) and import it in the first line in the index.js file of the project (as specified in the above link).
     ```js
     import {shim} from 'react-native-quick-base64'
 
@@ -69,8 +65,7 @@ Here is benchmark results:
     // Avoid using node dependent modules
     process.browser = true
     ```
-
-2. Edit your `babel.config.js` like so:
+5. Edit your `babel.config.js` like so:
     ```js
     module.exports = {
       presets: ['module:metro-react-native-babel-preset'],
@@ -86,8 +81,7 @@ Here is benchmark results:
       ],
     }
     ```
-
-3. To initialize, create pouchdb.ts like so:
+6. To initialize, create pouchdb.ts like so:
     ```js
     import 'react-native-get-random-values'
 
@@ -118,7 +112,7 @@ Here is benchmark results:
       // instantiate the plugin for react native
       const pluginSQLite = new nativeSQLite.SQLitePlugin();
       
-      // create the plugin for react native
+      // create the SQLite adapter for react native
       const adapterSQLite = createPlugin(pluginSQLite);
       
       PouchDB.plugin(HttpPouch)
@@ -131,8 +125,7 @@ Here is benchmark results:
       return pouchDB
     };
     ```
-
-4. Note - do not use these packages to avoid jest and web problems when importing them:
+7. Note - do not use these packages to avoid jest and web problems when importing them:
   - pouchdb-adapter-react-native-sqlite
   - react-native-quick-websql
 
