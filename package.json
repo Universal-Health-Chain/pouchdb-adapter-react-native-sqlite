@@ -1,12 +1,15 @@
 {
-  "name": "@universal-health-chain/pouchdb-adapter-react-native-sqlite",
+  "name": "@universal-health-chain/pouchdb-adapter-react-native-sqlite-ts",
   "version": "3.0.1",
   "description": "PouchDB adapter using ReactNative SQLite Plugin as its data store.",
   "main": "./lib/index.js",
   "keywords": [],
   "author": "Takuya Matsuyama <hi@craftz.dog>",
   "license": "MIT",
-  "repository": "https://github.com/craftzdog/pouchdb-adapter-react-native-sqlite",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/craftzdog/pouchdb-adapter-react-native-sqlite.git"
+  },
   "files": [
     "lib"
   ],
@@ -20,7 +23,6 @@
     "prepublish": "tsc && npm run prepublish:types && npm run prepublish:tsc"
   },
   "devDependencies": {
-    "standard": "^10.0.2",
     "@babel/cli": "^7.13.10",
     "@babel/core": "^7.13.10",
     "@babel/plugin-proposal-class-properties": "^7.13.0",
@@ -28,10 +30,19 @@
     "@babel/preset-typescript": "^7.13.0",
     "@types/jest": "^26.0.19",
     "jest": "^26.4.2",
+    "standard": "^17.0.0",
     "ts-jest": "^26.4.1",
     "typescript": "^4.5.5"
   },
   "dependencies": {
-    "@universal-health-chain/pouchdb-adapter-websql-core": "^7.2.3"
+    "@universal-health-chain/pouchdb-adapter-websql-core-ts": "^7.2.3"
+  },
+  "types": "./lib/index.d.ts",
+  "bugs": {
+    "url": "https://github.com/craftzdog/pouchdb-adapter-react-native-sqlite/issues"
+  },
+  "homepage": "https://github.com/Universal-Health-Chain/pouchdb-adapter-react-native-sqlite#readme",
+  "directories": {
+    "lib": "lib"
   }
 }

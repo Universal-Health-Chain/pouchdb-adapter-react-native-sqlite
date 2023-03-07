@@ -1,6 +1,6 @@
 'use strict'
 
-import { WebSqlPouch } from '@universal-health-chain/pouchdb-adapter-websql-core';
+import { WebSqlPouch } from '@universal-health-chain/pouchdb-adapter-websql-core-ts';
 var sqlite: any = null
 
 function createOpenDBFunction (opts: any) {
